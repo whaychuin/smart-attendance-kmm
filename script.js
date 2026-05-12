@@ -75,7 +75,8 @@ document.getElementById("noMatrik").addEventListener("blur", function() {
     });
 });
 
-
+// Submit attendance record
+document.getElementById("attendanceForm").addEventListener("submit", function(e) {
 // Submit attendance record
 document.getElementById("attendanceForm").addEventListener("submit", function(e) {
   e.preventDefault();
