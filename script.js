@@ -40,7 +40,26 @@ document.getElementById("noMatrik").addEventListener("blur", function() {
 
   if (data.result === "success") {
         document.getElementById("namaPelajar").value = data.studentName;
-        document.getElementById("praktikum").value = data.practicum;
+        const practicumDropdown = document.getElementById("praktikum");
+const practicumValue = data.practicum;
+
+let optionExists = false;
+
+for (let option of practicumDropdown.options) {
+  if (option.value === practicumValue) {
+    optionExists = true;
+    break;
+  }
+}
+
+if (!optionExists) {
+  const newOption = document.createElement("option");
+  newOption.value = practicumValue;
+  newOption.textContent = practicumValue;
+  practicumDropdown.appendChild(newOption);
+}
+
+practicumDropdown.value = practicumValue;
         document.getElementById("message").innerText = "Nama pelajar dijumpai.";
       } else {
         document.getElementById("namaPelajar").value = "";
