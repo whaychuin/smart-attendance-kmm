@@ -27,6 +27,28 @@ fetch(scriptURL)
     console.error("Dropdown loading error:", error);
   });
 
+document.getElementById("noMatrik").addEventListener("blur", function() {
+  const matricNo = this.value.trim();
+
+  if (matricNo === "") return;
+
+  fetch(`${scriptURL}?matricNo=${encodeURIComponent(matricNo)}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.result === "success") {
+        document.getElementById("namaPelajar").value = data.studentName;
+        document.getElementById("message").innerText = "Nama pelajar dijumpai.";
+      } else {
+        document.getElementById("namaPelajar").value = "";
+        document.getElementById("message").innerText = "No matrik tidak dijumpai.";
+      }
+    })
+    .catch(error => {
+      console.error("Student lookup error:", error);
+      document.getElementById("message").innerText = "Ralat mencari nama pelajar.";
+    });
+});
+
 document.getElementById("attendanceForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
