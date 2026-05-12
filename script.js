@@ -1,9 +1,10 @@
 const scriptURL = "https://script.google.com/macros/s/AKfycbwLv3iFXP2oyuYPVMVo7Y6LqVs3kjnQjV9He4kEiWJAgXAru2XkeLdGK2l3FZnn2mY79w/exec";
 
+// Load lecturer and practicum dropdowns
 fetch(scriptURL)
   .then(response => response.json())
   .then(data => {
-    console.log(data);
+    console.log("Dropdown data:", data);
 
     const lecturerDropdown = document.getElementById("pensyarah");
     const practicumDropdown = document.getElementById("praktikum");
@@ -21,12 +22,13 @@ fetch(scriptURL)
       option.textContent = practicum;
       practicumDropdown.appendChild(option);
     });
-
   })
   .catch(error => {
     console.error("Dropdown loading error:", error);
   });
 
+
+// Auto-fill student name and practicum based on matric number
 document.getElementById("noMatrik").addEventListener("blur", function() {
   const matricNo = this.value.trim();
 
@@ -35,32 +37,33 @@ document.getElementById("noMatrik").addEventListener("blur", function() {
   fetch(`${scriptURL}?matricNo=${encodeURIComponent(matricNo)}`)
     .then(response => response.json())
     .then(data => {
+      console.log("Student lookup result:", data);
 
-  console.log("Student lookup result:", data);
-
-  if (data.result === "success") {
+      if (data.result === "success") {
         document.getElementById("namaPelajar").value = data.studentName;
+
         const practicumDropdown = document.getElementById("praktikum");
-const practicumValue = data.practicum;
+        const practicumValue = data.practicum;
 
-let optionExists = false;
+        let optionExists = false;
 
-for (let option of practicumDropdown.options) {
-  if (option.value === practicumValue) {
-    optionExists = true;
-    break;
-  }
-}
+        for (let option of practicumDropdown.options) {
+          if (option.value === practicumValue) {
+            optionExists = true;
+            break;
+          }
+        }
 
-if (!optionExists) {
-  const newOption = document.createElement("option");
-  newOption.value = practicumValue;
-  newOption.textContent = practicumValue;
-  practicumDropdown.appendChild(newOption);
-}
+        if (!optionExists && practicumValue) {
+          const newOption = document.createElement("option");
+          newOption.value = practicumValue;
+          newOption.textContent = practicumValue;
+          practicumDropdown.appendChild(newOption);
+        }
 
-practicumDropdown.value = practicumValue;
-        document.getElementById("message").innerText = "Nama pelajar dijumpai.";
+        practicumDropdown.value = practicumValue;
+
+        document.getElementById("message").innerText = "Nama pelajar dan praktikum dijumpai.";
       } else {
         document.getElementById("namaPelajar").value = "";
         document.getElementById("message").innerText = "No matrik tidak dijumpai.";
@@ -72,6 +75,8 @@ practicumDropdown.value = practicumValue;
     });
 });
 
+
+// Submit attendance record
 document.getElementById("attendanceForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
@@ -91,13 +96,14 @@ document.getElementById("attendanceForm").addEventListener("submit", function(e)
     method: "POST",
     body: JSON.stringify(data)
   })
-  .then(response => response.json())
-  .then(result => {
-    document.getElementById("message").innerText = "Kehadiran berjaya dihantar!";
-    document.getElementById("attendanceForm").reset();
-  })
-  .catch(error => {
-    document.getElementById("message").innerText = "Ralat. Sila cuba lagi.";
-    console.error("Error:", error);
-  });
+    .then(response => response.json())
+    .then(result => {
+      console.log("Submission result:", result);
+      document.getElementById("message").innerText = "Kehadiran berjaya dihantar!";
+      document.getElementById("attendanceForm").reset();
+    })
+    .catch(error => {
+      document.getElementById("message").innerText = "Ralat. Sila cuba lagi.";
+      console.error("Submission error:", error);
+    });
 });
