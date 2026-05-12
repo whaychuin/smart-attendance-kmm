@@ -35,7 +35,10 @@ document.getElementById("noMatrik").addEventListener("blur", function() {
   fetch(`${scriptURL}?matricNo=${encodeURIComponent(matricNo)}`)
     .then(response => response.json())
     .then(data => {
-      if (data.result === "success") {
+
+  console.log("Student lookup result:", data);
+
+  if (data.result === "success") {
         document.getElementById("namaPelajar").value = data.studentName;
         document.getElementById("message").innerText = "Nama pelajar dijumpai.";
       } else {
