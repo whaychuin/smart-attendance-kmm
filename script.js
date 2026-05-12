@@ -3,6 +3,7 @@ const scriptURL = "https://script.google.com/macros/s/AKfycbwLv3iFXP2oyuYPVMVo7Y
 fetch(scriptURL)
   .then(response => response.json())
   .then(data => {
+    console.log(data);
 
     const lecturerDropdown = document.getElementById("pensyarah");
     const practicumDropdown = document.getElementById("praktikum");
