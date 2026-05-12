@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Attendance KMM</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Smart Attendance KMM</h1>
+    <p>Sistem Rekod Kehadiran Digital</p>
+
+    <form id="attendanceForm">
+      <label>Tarikh</label>
+      <input type="date" id="date" required>
+
+      <label>Nama Pensyarah</label>
+      <input type="text" id="pensyarah" required>
+
+      <label>Mod</label>
+      <select id="mod" required>
+        <option value="">Pilih mod</option>
+        <option>Kuliah</option>
+        <option>Tutorial</option>
+        <option>Praktikum</option>
+        <option>Amali</option>
+      </select>
+
+      <label>Praktikum</label>
+      <input type="text" id="praktikum" required>
+
+      <label>No Matrik</label>
+      <input type="text" id="noMatrik" required>
+
+      <label>Nama Pelajar</label>
+      <input type="text" id="namaPelajar" required>
+
+      <label>Status</label>
+      <select id="status" required>
+        <option value="">Pilih status</option>
+        <option>Hadir</option>
+        <option>Tidak Hadir</option>
+        <option>Lewat</option>
+        <option>MC</option>
+        <option>Urusan Rasmi</option>
+      </select>
+
+      <label>Catatan</label>
+      <input type="text" id="catatan">
+
+      <button type="submit">Hantar Kehadiran</button>
+    </form>
+
+    <p id="message"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
