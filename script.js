@@ -40,6 +40,7 @@ document.getElementById("noMatrik").addEventListener("blur", function() {
 
   if (data.result === "success") {
         document.getElementById("namaPelajar").value = data.studentName;
+        document.getElementById("praktikum").value = data.practicum;
         document.getElementById("message").innerText = "Nama pelajar dijumpai.";
       } else {
         document.getElementById("namaPelajar").value = "";
