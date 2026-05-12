@@ -7,15 +7,22 @@
 <body>
 
   <div class="container">
-    <h1>Smart Attendance KMM</h1>
-    <p>Sistem Rekod Kehadiran Digital</p>
+
+    <div class="header-card">
+      <h1>Smart Attendance KMM</h1>
+      <p>Unit Biologi | Kolej Matrikulasi Melaka</p>
+      <span>Sistem Rekod Kehadiran Digital</span>
+    </div>
 
     <form id="attendanceForm">
+
+      <div class="section-title">Maklumat Kelas</div>
+
       <label>Tarikh</label>
       <input type="date" id="date" required>
 
       <label>Nama Pensyarah</label>
-      <input type="text" id="pensyarah" required>
+      <input type="text" id="pensyarah" placeholder="Contoh: Pn Whay Chuin" required>
 
       <label>Mod</label>
       <select id="mod" required>
@@ -27,15 +34,17 @@
       </select>
 
       <label>Praktikum</label>
-      <input type="text" id="praktikum" required>
+      <input type="text" id="praktikum" placeholder="Contoh: H1T1" required>
+
+      <div class="section-title">Maklumat Pelajar</div>
 
       <label>No Matrik</label>
-      <input type="text" id="noMatrik" required>
+      <input type="text" id="noMatrik" placeholder="Contoh: MS24123456" required>
 
       <label>Nama Pelajar</label>
-      <input type="text" id="namaPelajar" required>
+      <input type="text" id="namaPelajar" placeholder="Nama penuh pelajar" required>
 
-      <label>Status</label>
+      <label>Status Kehadiran</label>
       <select id="status" required>
         <option value="">Pilih status</option>
         <option>Hadir</option>
@@ -46,12 +55,15 @@
       </select>
 
       <label>Catatan</label>
-      <input type="text" id="catatan">
+      <input type="text" id="catatan" placeholder="Contoh: MC / Lewat 10 minit / Tiada">
 
       <button type="submit">Hantar Kehadiran</button>
     </form>
 
     <p id="message"></p>
+
+    <p class="footer">Smart Attendance KMM | Prototype Version 1.0</p>
+
   </div>
 
   <script src="script.js"></script>
